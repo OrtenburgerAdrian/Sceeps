@@ -8,9 +8,9 @@
  */
 
 module.exports = {
-run: function() {
+    run: function () {
 
-    var towers = Game.rooms.W14S51.find(FIND_STRUCTURES, {
+        var towers = Game.rooms.W14S51.find(FIND_STRUCTURES, {
             filter: (s) => s.structureType == STRUCTURE_TOWER
         });
         for (let tower of towers) {

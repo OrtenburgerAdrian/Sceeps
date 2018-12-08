@@ -9,6 +9,6 @@ module.exports.loop = function () {
     creepswork.run();
     towerwork.run();
     cleanup.run();
-    
+
 };
 
