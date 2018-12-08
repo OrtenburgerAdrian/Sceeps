@@ -1,5 +1,5 @@
 var roleBuilder = require('role.builder');
-var getenergy = require('creeps.get.energy');
+var getenergy = require('creeps.get.lazyenergy');
 module.exports = {
     // a function to run the logic for this role
     run: function (creep) {

@@ -20,12 +20,14 @@ module.exports = {
         var minimumNumberOfBuilders_homeroom1 = 0;
         var minimumNumberOfRepairers_homeroom1 = 1;
         var minimumNumberOfWallRepairers_homeroom1 = 0;
+        var minimumNumberOfFama_homeroom1 = 0;
 
-        var minimumNumberOfHarvesters_homeroom2 = 0;
-        var minimumNumberOfUpgraders_homeroom2 = 0;
+        var minimumNumberOfHarvesters_homeroom2 = 2;
+        var minimumNumberOfUpgraders_homeroom2 = 1;
         var minimumNumberOfBuilders_homeroom2 = 0;
         var minimumNumberOfRepairers_homeroom2 = 0;
         var minimumNumberOfWallRepairers_homeroom2 = 0;
+        var minimumNumberOfFama_homeroom2 = 0;
 
         // count the number of creeps alive for each role
         // _.sum will count the number of properties in Game.creeps filtered by the
@@ -35,6 +37,7 @@ module.exports = {
         var numberOfBuilders = _.sum(Game.creeps, (c) => c.memory.role == 'builder' && c.memory.workroom == homeroom1);
         var numberOfRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'repairer' && c.memory.workroom == homeroom1);
         var numberOfWallRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'wallRepairer' && c.memory.workroom == homeroom1);
+        var numberOfFama = _.sum(Game.creeps, (c) => c.memory.role == 'fama' && c.memory.workroom == homeroom1);
 
         var energy = Game.spawns.Spawn1.room.energyCapacityAvailable;
         var name = undefined;
@@ -44,7 +47,8 @@ module.exports = {
         var numberOfBuilders2 = _.sum(Game.creeps, (c) => c.memory.role == 'builder' && c.memory.workroom == homeroom2);
         var numberOfRepairers2 = _.sum(Game.creeps, (c) => c.memory.role == 'repairer' && c.memory.workroom == homeroom2);
         var numberOfWallRepairers2 = _.sum(Game.creeps, (c) => c.memory.role == 'wallRepairer' && c.memory.workroom == homeroom2);
-        var energy2 = 300;// Game.spawns.Spawn2.room.energyCapacityAvailable;
+        var numberOfFama2 = _.sum(Game.creeps, (c) => c.memory.role == 'fama' && c.memory.workroom == homeroom2);
+        var energy2 = Game.spawns.Spawn2.room.energyCapacityAvailable;
 
 
         if (numberOfHarvesters < minimumNumberOfHarvesters_homeroom1) {
@@ -64,7 +68,10 @@ module.exports = {
             name = Game.spawns.Spawn1.createCustomCreep(energy, 'builder', homeroom1);
         }
         else if (numberOfWallRepairers < minimumNumberOfWallRepairers_homeroom1) {
-            name = Game.spawns.Spawn1.createCustomCreep(energy, 'wallRepairer', homeroom1);
+            Game.spawns['Spawn1'].createCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE],undefined , {working: 'false', role: 'repairers', workroom: "W14S51"});
+        }else if (numberOfFama < minimumNumberOfFama_homeroom1) {
+            name = Game.spawns.Spawn1.createCustomCreep(energy, 'fama', homeroom1);
+            Game.spawns['Spawn1'].createCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],undefined , {working: 'false', role: 'fama', workroom: "W14S51"});
         }
 
 
@@ -93,14 +100,5 @@ module.exports = {
         if (name != undefined && name != -6 && name != -4) {
             console.log("Spawned new creep: " + name);
         }
-
-
-
-
-
-
-
-
-
     }
 };
