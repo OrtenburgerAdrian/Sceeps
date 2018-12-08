@@ -20,7 +20,7 @@ module.exports = {
         var minimumNumberOfBuilders_homeroom1 = 0;
         var minimumNumberOfRepairers_homeroom1 = 1;
         var minimumNumberOfWallRepairers_homeroom1 = 0;
-        var minimumNumberOfFama_homeroom1 = 0;
+        var minimumNumberOfFama_homeroom1 = 1;
 
         var minimumNumberOfHarvesters_homeroom2 = 2;
         var minimumNumberOfUpgraders_homeroom2 = 1;
