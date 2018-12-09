@@ -1,5 +1,6 @@
 var roleBuilder = require('role.builder');
-var getenergy = require('creeps.get.lazyenergy');
+var getlazyenergyenergy = require('creeps.get.lazyenergy');
+var getenergy = require('creeps.get.energy');
 module.exports = {
     // a function to run the logic for this role
     run: function (creep) {
@@ -42,7 +43,11 @@ module.exports = {
         }
         // if creep is supposed to harvest energy from source
         else {
-            getenergy.run(creep);
+            if (creep.room.storage==undefined){
+                getenergy.run(creep);
+            }else{
+            getlazyenergyenergy.run(creep);
+            }
         }
     }
 };

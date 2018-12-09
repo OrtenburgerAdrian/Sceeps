@@ -14,7 +14,9 @@ module.exports = {
         var homeroom1 = "W14S51"
         var homeroom2 = "W13S51"
         var homeroom3 = "W15S51"
-
+        var homeroom4 = "W12S51"
+        
+        //spawn1
         var minimumNumberOfHarvesters_homeroom1 = 0;
         var minimumNumberOfUpgraders_homeroom1 = 1;
         var minimumNumberOfBuilders_homeroom1 = 3;
@@ -22,7 +24,8 @@ module.exports = {
         var minimumNumberOfWallRepairers_homeroom1 = 0;
         var minimumNumberOfFama_homeroom1 = 1;
         var minimumNumberOfHoler_homeroom1 = 1;
-
+        
+        //spawn2
         var minimumNumberOfHarvesters_homeroom2 = 2;
         var minimumNumberOfUpgraders_homeroom2 = 1;
         var minimumNumberOfBuilders_homeroom2 = 0;
@@ -31,24 +34,34 @@ module.exports = {
         var minimumNumberOfFama_homeroom2 = 0;
         var minimumNumberOfHoler_homeroom2 = 0;
         
+        //spawn3
         var minimumNumberOfHarvesters_homeroom3 = 4;
         var minimumNumberOfUpgraders_homeroom3 = 4;
         var minimumNumberOfBuilders_homeroom3 = 2;
-        var minimumNumberOfRepairers_homeroom3 = 0;
+        var minimumNumberOfRepairers_homeroom3 = 1;
         var minimumNumberOfWallRepairers_homeroom3 = 0;
         var minimumNumberOfFama_homeroom3 = 0;
         var minimumNumberOfHoler_homeroom3 = 0;
         
+        //spawn4
+        var minimumNumberOfHarvesters_homeroom4 = 2;
+        var minimumNumberOfUpgraders_homeroom4 = 1;
+        var minimumNumberOfBuilders_homeroom4 = 2;
+        var minimumNumberOfRepairers_homeroom4 = 0;
+        var minimumNumberOfWallRepairers_homeroom4 = 0;
+        var minimumNumberOfFama_homeroom4 = 0;
+        var minimumNumberOfHoler_homeroom4 = 0;
+        
         var name = undefined;
         
-        var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester' && c.memory.workroom == homeroom1);
-        var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader' && c.memory.workroom == homeroom1);
-        var numberOfBuilders = _.sum(Game.creeps, (c) => c.memory.role == 'builder' && c.memory.workroom == homeroom1);
-        var numberOfRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'repairers' && c.memory.workroom == homeroom1);
-        var numberOfWallRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'wallRepairer' && c.memory.workroom == homeroom1);
-        var numberOfFama = _.sum(Game.creeps, (c) => c.memory.role == 'fama' && c.memory.workroom == homeroom1);
-        var numberOfHoler = _.sum(Game.creeps, (c) => c.memory.role == 'holer' && c.memory.workroom == homeroom1);
-        var energy = Game.spawns.Spawn1.room.energyCapacityAvailable;
+        var numberOfHarvesters      = _.sum(Game.creeps, (c) => c.memory.role == 'harvester' && c.memory.workroom == homeroom1);
+        var numberOfUpgraders       = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader' && c.memory.workroom == homeroom1);
+        var numberOfBuilders        = _.sum(Game.creeps, (c) => c.memory.role == 'builder' && c.memory.workroom == homeroom1);
+        var numberOfRepairers       = _.sum(Game.creeps, (c) => c.memory.role == 'repairers' && c.memory.workroom == homeroom1);
+        var numberOfWallRepairers   = _.sum(Game.creeps, (c) => c.memory.role == 'wallRepairer' && c.memory.workroom == homeroom1);
+        var numberOfFama            = _.sum(Game.creeps, (c) => c.memory.role == 'fama' && c.memory.workroom == homeroom1);
+        var numberOfHoler           = _.sum(Game.creeps, (c) => c.memory.role == 'holer' && c.memory.workroom == homeroom1);
+        var energy                  = Game.spawns.Spawn1.room.energyCapacityAvailable;
 
         var numberOfHarvesters2 = _.sum(Game.creeps, (c) => c.memory.role == 'harvester' && c.memory.workroom == homeroom2);
         var numberOfUpgraders2 = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader' && c.memory.workroom == homeroom2);
@@ -67,6 +80,15 @@ module.exports = {
         var numberOfFama3 = _.sum(Game.creeps, (c) => c.memory.role == 'fama' && c.memory.workroom == homeroom3);
         var numberOfHoler3 = _.sum(Game.creeps, (c) => c.memory.role == 'holer' && c.memory.workroom == homeroom3);
         var energy3 = Game.spawns.Spawn3.room.energyCapacityAvailable;
+        
+        var numberOfHarvesters4 = _.sum(Game.creeps, (c) => c.memory.role == 'harvester' && c.memory.workroom == homeroom4);
+        var numberOfUpgraders4 = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader' && c.memory.workroom == homeroom4);
+        var numberOfBuilders4 = _.sum(Game.creeps, (c) => c.memory.role == 'builder' && c.memory.workroom == homeroom4);
+        var numberOfRepairers4 = _.sum(Game.creeps, (c) => c.memory.role == 'repairers' && c.memory.workroom == homeroom4);
+        var numberOfWallRepairers4 = _.sum(Game.creeps, (c) => c.memory.role == 'wallRepairer' && c.memory.workroom == homeroom4);
+        var numberOfFama4 = _.sum(Game.creeps, (c) => c.memory.role == 'fama' && c.memory.workroom == homeroom4);
+        var numberOfHoler4 = _.sum(Game.creeps, (c) => c.memory.role == 'holer' && c.memory.workroom == homeroom4);
+        var energy4 = Game.spawns.Spawn4.room.energyCapacityAvailable;
         
         
         
@@ -127,7 +149,6 @@ if (numberOfHarvesters2 < minimumNumberOfHarvesters_homeroom2) {
         }
         
 //----------------------------------------------------------------------------------------------
-
 if (numberOfHarvesters3 < minimumNumberOfHarvesters_homeroom3) {
             name = Game.spawns.Spawn3.createCustomCreep(energy3, 'harvester', homeroom3);
             if (name == ERR_NOT_ENOUGH_ENERGY && numberOfHarvesters == 0) {
@@ -155,6 +176,32 @@ if (numberOfHarvesters3 < minimumNumberOfHarvesters_homeroom3) {
         }
 
 //----------------------------------------------------------------------------------------------
+if (numberOfHarvesters4 < minimumNumberOfHarvesters_homeroom4) {
+            name = Game.spawns.Spawn4.createCustomCreep(energy4, 'harvester', homeroom4);
+            if (name == ERR_NOT_ENOUGH_ENERGY && numberOfHarvesters4 == 0) {
+                name = Game.spawns.Spawn4.createCustomCreep(
+                   Game.spawns.Spawn4.room.energyAvailable, 'harvester', homeroom4);
+            }
+        }
+        else if (numberOfUpgraders4 < minimumNumberOfUpgraders_homeroom4) {
+            name = Game.spawns.Spawn4.createCustomCreep(energy4, 'upgrader', homeroom4);
+        }
+        else if (numberOfRepairers4 < minimumNumberOfRepairers_homeroom4) {
+            name =Game.spawns['Spawn4'].createCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE],undefined , {working: false, role: 'repairers', workroom: "W12S51"});
+        }
+        else if (numberOfBuilders4 < minimumNumberOfBuilders_homeroom4) {
+            name = Game.spawns.Spawn4.createCustomCreep(energy4, 'builder', homeroom4);
+        }
+        else if (numberOfWallRepairers4 < minimumNumberOfWallRepairers_homeroom4) {
+            name = Game.spawns.Spawn4.createCustomCreep(energy4, 'wallRepairer', homeroom4);
+        }
+        else if (numberOfFama4 < minimumNumberOfFama_homeroom4) {
+            name =Game.spawns['Spawn4'].createCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],undefined , {working: false, role: 'fama', workroom: "W12S51"});
+        }
+        else if (numberOfHoler4 < minimumNumberOfHoler_homeroom4) {
+            name =Game.spawns['Spawn4'].createCreep([CARRY,CARRY,CARRY,CARRY,MOVE,MOVE],undefined , {working: false, role: 'holer', workroom: "W12S51"});
+        }
+//-----------------------------------------------------------------------------------------------
         if (name != undefined && name != -6 && name != -4) {
             console.log("Spawned new creep: " + name);
         }
