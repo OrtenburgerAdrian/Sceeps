@@ -18,6 +18,7 @@ module.exports = {
                 if(creep.carry.energy == creep.carryCapacity){
                     creep.transfer(creep.room.storage, RESOURCE_ENERGY);    
                 }else{
+                    
                     var source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
                     if (source != undefined) {
                         creep.harvest(source);                       

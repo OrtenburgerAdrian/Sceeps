@@ -18,9 +18,9 @@ module.exports = {
                         }
                     }
         } else {
-            var source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
-            /* var source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE, {
-                 filter: (s) =>s.id != "59f1a21d82100e1594f39742"*/
+            //var source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
+            var source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE, {
+                 filter: (s) =>s.id != "59f1a21d82100e1594f39742"});
 
             if (source != undefined) {
                 if (creep.harvest(source) == ERR_NOT_IN_RANGE) {

@@ -5,6 +5,7 @@ var roleRepairer = require('role.repairer');
 var roleWallRepairer = require('role.wallRepairer');
 var roleFama = require('role.fama');
 var kevin = require('role.kevin');
+var roleHoler = require('role.holer');
 
 module.exports = {
     run: function () {
@@ -27,7 +28,7 @@ module.exports = {
                 roleBuilder.run(creep);
             }
             // if creep is repairer, call repairer script
-            else if (creep.memory.role == 'repairer') {
+            else if (creep.memory.role == 'repairers') {
                 roleRepairer.run(creep);
             }
             // if creep is wallRepairer, call wallRepairer script
@@ -39,6 +40,9 @@ module.exports = {
             }
             else if(creep.memory.role == 'kevin') {
                 kevin.run(creep);
+            }
+            else if(creep.memory.role == 'holer') {
+                roleHoler.run(creep);
             }
         }
 
