@@ -20,7 +20,8 @@ module.exports = {
         //if(creep.claimController(creep.room.controller) == ERR_NOT_IN_RANGE) {creep.moveTo(creep.room.controller);    }
         
         if(creep.ticksToLive < 400 && creep.carry.energy == 0 ){
-            creep.suicide;
+            console.log("uhheee i am down" + creep)
+           creep.suicide();
         }
         
         if (Game.flags.Flag1.room != creep.room  && creep.carry.energy == 0) {

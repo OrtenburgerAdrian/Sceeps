@@ -19,7 +19,7 @@ module.exports = {
         
         
         //spawn kevins
-        var minimumNumberOfKevin = 10;
+        var minimumNumberOfKevin = 15;
         
         //spawn1
         var minimumNumberOfHarvesters_homeroom1 = 0;
