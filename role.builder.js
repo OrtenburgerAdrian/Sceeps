@@ -3,6 +3,10 @@ var getenergy = require('creeps.get.energy');
 module.exports = {
     // a function to run the logic for this role
     run: function (creep) {
+        if(false){
+            
+        }
+        else{
         // if creep is trying to complete a constructionSite but has no energy left
         if (creep.memory.working == true && creep.carry.energy == 0) {
             // switch state
@@ -36,5 +40,7 @@ module.exports = {
         else {
             getenergy.run(creep);
         }
+    }
+        
     }
 };

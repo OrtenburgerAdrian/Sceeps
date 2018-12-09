@@ -17,6 +17,10 @@ module.exports = {
         var homeroom4 = "W12S51"
         var homeroom5 = "W11S52"
         
+        
+        //spawn kevins
+        var minimumNumberOfKevin = 10;
+        
         //spawn1
         var minimumNumberOfHarvesters_homeroom1 = 0;
         var minimumNumberOfUpgraders_homeroom1 = 1;
@@ -27,8 +31,8 @@ module.exports = {
         var minimumNumberOfHoler_homeroom1 = 1;
         
         //spawn2
-        var minimumNumberOfHarvesters_homeroom2 = 2;
-        var minimumNumberOfUpgraders_homeroom2 = 1;
+        var minimumNumberOfHarvesters_homeroom2 = 3;
+        var minimumNumberOfUpgraders_homeroom2 = 2;
         var minimumNumberOfBuilders_homeroom2 = 0;
         var minimumNumberOfRepairers_homeroom2 = 0;
         var minimumNumberOfWallRepairers_homeroom2 = 0;
@@ -54,15 +58,17 @@ module.exports = {
         var minimumNumberOfHoler_homeroom4 = 0;
         
         //spawn5
-        var minimumNumberOfHarvesters_homeroom5 = 0;
-        var minimumNumberOfUpgraders_homeroom5 = 0;
-        var minimumNumberOfBuilders_homeroom5 = 0;
+        var minimumNumberOfHarvesters_homeroom5 = 3;
+        var minimumNumberOfUpgraders_homeroom5 = 2;
+        var minimumNumberOfBuilders_homeroom5 = 2;
         var minimumNumberOfRepairers_homeroom5 = 0;
         var minimumNumberOfWallRepairers_homeroom5 = 0;
         var minimumNumberOfFama_homeroom5 = 0;
         var minimumNumberOfHoler_homeroom5 = 0;
         
         var name = undefined;
+        
+        var numberOfKevin      = _.sum(Game.creeps, (c) => c.memory.role == 'kevin');
         
         var numberOfHarvesters      = _.sum(Game.creeps, (c) => c.memory.role == 'harvester' && c.memory.workroom == homeroom1);
         var numberOfUpgraders       = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader' && c.memory.workroom == homeroom1);
@@ -119,6 +125,12 @@ module.exports = {
                     Game.spawns.Spawn1.room.energyAvailable, 'harvester', homeroom1);
             }
         }
+        else if (numberOfHoler < minimumNumberOfHoler_homeroom1) {
+            name =Game.spawns['Spawn1'].createCreep([CARRY,CARRY,CARRY,CARRY,MOVE,MOVE],undefined , {working: false, role: 'holer', workroom: "W14S51"});
+        }
+        else if (numberOfFama < minimumNumberOfFama_homeroom1) {
+            name =Game.spawns['Spawn1'].createCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],undefined , {working: false, role: 'fama', workroom: "W14S51"});
+        }
         else if (numberOfUpgraders < minimumNumberOfUpgraders_homeroom1) {
             name = Game.spawns.Spawn1.createCustomCreep(energy, 'upgrader', homeroom1);
         }
@@ -130,13 +142,11 @@ module.exports = {
         }
         else if (numberOfWallRepairers < minimumNumberOfWallRepairers_homeroom1) {
             name = Game.spawns.Spawn1.createCustomCreep(energy1, 'wallRepairer', homeroom1);
+        }else if (numberOfKevin < minimumNumberOfKevin) {
+            name =Game.spawns['Spawn1'].createCreep([CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],undefined , {working: false, role: 'kevin'});
         }
-        else if (numberOfFama < minimumNumberOfFama_homeroom1) {
-            name =Game.spawns['Spawn1'].createCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],undefined , {working: false, role: 'fama', workroom: "W14S51"});
-        }
-        else if (numberOfHoler < minimumNumberOfHoler_homeroom1) {
-            name =Game.spawns['Spawn1'].createCreep([CARRY,CARRY,CARRY,CARRY,MOVE,MOVE],undefined , {working: false, role: 'holer', workroom: "W14S51"});
-        }
+        
+        
 
 
 //----------------------------------------------------------------------------------------------
@@ -246,6 +256,8 @@ module.exports = {
         else if (numberOfHoler5 < minimumNumberOfHoler_homeroom5) {
             name =Game.spawns['Spawn5'].createCreep([CARRY,CARRY,CARRY,CARRY,MOVE,MOVE],undefined , {working: false, role: 'holer', workroom: "W11S52"});
         }
+//-----------------------------------------------------------------------------------------------
+
 //-----------------------------------------------------------------------------------------------
         if (name != undefined && name != -6 && name != -4) {
             console.log("Spawned new creep: " + name);
