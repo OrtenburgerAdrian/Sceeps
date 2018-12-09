@@ -15,6 +15,7 @@ module.exports = {
         var homeroom2 = "W13S51"
         var homeroom3 = "W15S51"
         var homeroom4 = "W12S51"
+        var homeroom5 = "W11S52"
         
         //spawn1
         var minimumNumberOfHarvesters_homeroom1 = 0;
@@ -51,6 +52,15 @@ module.exports = {
         var minimumNumberOfWallRepairers_homeroom4 = 0;
         var minimumNumberOfFama_homeroom4 = 0;
         var minimumNumberOfHoler_homeroom4 = 0;
+        
+        //spawn5
+        var minimumNumberOfHarvesters_homeroom5 = 0;
+        var minimumNumberOfUpgraders_homeroom5 = 0;
+        var minimumNumberOfBuilders_homeroom5 = 0;
+        var minimumNumberOfRepairers_homeroom5 = 0;
+        var minimumNumberOfWallRepairers_homeroom5 = 0;
+        var minimumNumberOfFama_homeroom5 = 0;
+        var minimumNumberOfHoler_homeroom5 = 0;
         
         var name = undefined;
         
@@ -90,6 +100,15 @@ module.exports = {
         var numberOfHoler4 = _.sum(Game.creeps, (c) => c.memory.role == 'holer' && c.memory.workroom == homeroom4);
         var energy4 = Game.spawns.Spawn4.room.energyCapacityAvailable;
         
+        var numberOfHarvesters5 = _.sum(Game.creeps, (c) => c.memory.role == 'harvester' && c.memory.workroom == homeroom5);
+        var numberOfUpgraders5 = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader' && c.memory.workroom == homeroom5);
+        var numberOfBuilders5 = _.sum(Game.creeps, (c) => c.memory.role == 'builder' && c.memory.workroom == homeroom5);
+        var numberOfRepairers5 = _.sum(Game.creeps, (c) => c.memory.role == 'repairers' && c.memory.workroom == homeroom5);
+        var numberOfWallRepairers5 = _.sum(Game.creeps, (c) => c.memory.role == 'wallRepairer' && c.memory.workroom == homeroom5);
+        var numberOfFama5 = _.sum(Game.creeps, (c) => c.memory.role == 'fama' && c.memory.workroom == homeroom5);
+        var numberOfHoler5 = _.sum(Game.creeps, (c) => c.memory.role == 'holer' && c.memory.workroom == homeroom5);
+        var energy5 = 300;//Game.spawns.Spawn4.room.energyCapacityAvailable;
+        
         
         
 //-----------------------------------------------------------------------------
@@ -122,7 +141,7 @@ module.exports = {
 
 //----------------------------------------------------------------------------------------------
 
-if (numberOfHarvesters2 < minimumNumberOfHarvesters_homeroom2) {
+        if (numberOfHarvesters2 < minimumNumberOfHarvesters_homeroom2) {
             name = Game.spawns.Spawn2.createCustomCreep(energy2, 'harvester', homeroom2);
             if (name == ERR_NOT_ENOUGH_ENERGY && numberOfHarvesters2 == 0) {
                 name = Game.spawns.Spawn2.createCustomCreep(
@@ -149,7 +168,7 @@ if (numberOfHarvesters2 < minimumNumberOfHarvesters_homeroom2) {
         }
         
 //----------------------------------------------------------------------------------------------
-if (numberOfHarvesters3 < minimumNumberOfHarvesters_homeroom3) {
+        if (numberOfHarvesters3 < minimumNumberOfHarvesters_homeroom3) {
             name = Game.spawns.Spawn3.createCustomCreep(energy3, 'harvester', homeroom3);
             if (name == ERR_NOT_ENOUGH_ENERGY && numberOfHarvesters == 0) {
                 name = Game.spawns.Spawn3.createCustomCreep(
@@ -176,7 +195,7 @@ if (numberOfHarvesters3 < minimumNumberOfHarvesters_homeroom3) {
         }
 
 //----------------------------------------------------------------------------------------------
-if (numberOfHarvesters4 < minimumNumberOfHarvesters_homeroom4) {
+        if (numberOfHarvesters4 < minimumNumberOfHarvesters_homeroom4) {
             name = Game.spawns.Spawn4.createCustomCreep(energy4, 'harvester', homeroom4);
             if (name == ERR_NOT_ENOUGH_ENERGY && numberOfHarvesters4 == 0) {
                 name = Game.spawns.Spawn4.createCustomCreep(
@@ -200,6 +219,32 @@ if (numberOfHarvesters4 < minimumNumberOfHarvesters_homeroom4) {
         }
         else if (numberOfHoler4 < minimumNumberOfHoler_homeroom4) {
             name =Game.spawns['Spawn4'].createCreep([CARRY,CARRY,CARRY,CARRY,MOVE,MOVE],undefined , {working: false, role: 'holer', workroom: "W12S51"});
+        }
+//-----------------------------------------------------------------------------------------------
+        if (numberOfHarvesters5 < minimumNumberOfHarvesters_homeroom5) {
+            name = Game.spawns.Spawn5.createCustomCreep(energy5, 'harvester', homeroom5);
+            if (name == ERR_NOT_ENOUGH_ENERGY && numberOfHarvesters5 == 0) {
+                name = Game.spawns.Spawn5.createCustomCreep(
+                   Game.spawns.Spawn5.room.energyAvailable, 'harvester', homeroom5);
+            }
+        }
+        else if (numberOfUpgraders5 < minimumNumberOfUpgraders_homeroom5) {
+            name = Game.spawns.Spawn5.createCustomCreep(energy5, 'upgrader', homeroom5);
+        }
+        else if (numberOfRepairers5 < minimumNumberOfRepairers_homeroom5) {
+            name =Game.spawns['Spawn5'].createCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE],undefined , {working: false, role: 'repairers', workroom: "W11S52"});
+        }
+        else if (numberOfBuilders5 < minimumNumberOfBuilders_homeroom5) {
+            name = Game.spawns.Spawn5.createCustomCreep(energy5, 'builder', homeroom5);
+        }
+        else if (numberOfWallRepairers5 < minimumNumberOfWallRepairers_homeroom5) {
+            name = Game.spawns.Spawn5.createCustomCreep(energy5, 'wallRepairer', homeroom5);
+        }
+        else if (numberOfFama5 < minimumNumberOfFama_homeroom5) {
+            name =Game.spawns['Spawn5'].createCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],undefined , {working: false, role: 'fama', workroom: "W11S52"});
+        }
+        else if (numberOfHoler5 < minimumNumberOfHoler_homeroom5) {
+            name =Game.spawns['Spawn5'].createCreep([CARRY,CARRY,CARRY,CARRY,MOVE,MOVE],undefined , {working: false, role: 'holer', workroom: "W11S52"});
         }
 //-----------------------------------------------------------------------------------------------
         if (name != undefined && name != -6 && name != -4) {

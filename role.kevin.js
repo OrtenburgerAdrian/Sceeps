@@ -18,9 +18,18 @@ module.exports = {
         //console.log(Game.flags.Flag1.room) ;
         //creep.moveTo(Game.flags.Flag1);
         //if(creep.claimController(creep.room.controller) == ERR_NOT_IN_RANGE) {creep.moveTo(creep.room.controller);    }
-        if (Game.flags.Flag1.room != creep.room) {
+        if (Game.flags.Flag1.room != creep.room  && creep.carry.energy == 0) {
             creep.moveTo(Game.flags.Flag1);
-        } else {
+        } /*else if(Game.flags.Flag1.room == creep.room && creep.carry.energy == 0){
+            if(creep.withdraw(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(creep.room.storage);
+            }
+        }else if(Game.flags.Flag2.room != creep.room && creep.carry.energy == creep.carryCapacity){
+            creep.moveTo(Game.flags.Flag2);
+        }else if(Game.flags.Flag2.room == creep.room && creep.carry.energy == creep.carryCapacity){
+                creep.transfer(creep.room.storage, RESOURCE_ENERGY);    
+        }*/
+        else {
                   roleHarvester.run(creep);
                   if(creep.claimController(creep.room.controller) == ERR_NOT_IN_RANGE) {creep.moveTo(creep.room.controller);}
                 }
